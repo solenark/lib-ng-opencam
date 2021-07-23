@@ -44,11 +44,11 @@ export class OpencamComponent implements OnInit, OnDestroy {
   @Input()
   set audioSource(v: ISourceDevice) {
     if (this.isScanCompleted) {
-      this._audioSource = this.audioSources.find(d => d.id == v.id);
-      if(this._audioSource)  {
-        this.stopStream();
-        this.initStream();
-      }
+      // this._audioSource = this.audioSources.find(d => d.id == v.id);
+      // if(this._audioSource)  {
+      //   this.stopStream();
+      //   this.initStream();
+      // }
     }
   }
   // tslint:disable-next-line:variable-name
@@ -205,7 +205,7 @@ export class OpencamComponent implements OnInit, OnDestroy {
 
   constructor() {
     this.video.muted = true;
-    this.video.autoplay = false;
+    this.video.playsInline = true;
   }
 
   ngOnInit() {
@@ -260,15 +260,15 @@ export class OpencamComponent implements OnInit, OnDestroy {
                 });
               }
             }
-            if (devicesInfos[i].kind === 'audioinput') {
-              if(devicesInfos[i].deviceId !== undefined) {
-                this.audioSources.push({
-                  id: devicesInfos[i].deviceId,
-                  label: devicesInfos[i].label,
-                  kind: devicesInfos[i].kind,
-                });
-              }
-            }
+            // if (devicesInfos[i].kind === 'audioinput') {
+            //   if(devicesInfos[i].deviceId !== undefined) {
+            //     this.audioSources.push({
+            //       id: devicesInfos[i].deviceId,
+            //       label: devicesInfos[i].label,
+            //       kind: devicesInfos[i].kind,
+            //     });
+            //   }
+            // }
       }
       if (devicesFound === 0) {
         const e = new Error();

@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "Customizations on ng-opencam lib",
   "main": "index.js",
-  "scripts": {
-    "postinstall": "mv ./ng-opencam/* ./ && rmdir ./ng-opencam"
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/solenark/lib-ng-opencam.git"
