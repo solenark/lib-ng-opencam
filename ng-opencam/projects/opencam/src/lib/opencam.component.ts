@@ -205,6 +205,7 @@ export class OpencamComponent implements OnInit, OnDestroy {
 
   constructor() {
     this.video.muted = true;
+    this.video.autoplay = false;
   }
 
   ngOnInit() {
