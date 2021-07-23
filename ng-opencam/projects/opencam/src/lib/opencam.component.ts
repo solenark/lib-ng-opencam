@@ -17,6 +17,8 @@ export class OpencamComponent implements OnInit, OnDestroy {
   audioSourceEvent: EventEmitter<ISourceDevice[]> = new EventEmitter(true);
   @Output()
   errorEvent: EventEmitter<Error> = new EventEmitter(true);
+  @Output()
+  lodadedMetadata: EventEmitter<any> = new EventEmitter(true);
 
   @Input()
   set framerate(v: number) {
@@ -175,6 +177,7 @@ export class OpencamComponent implements OnInit, OnDestroy {
   private _filters: string;
 
   video = document.createElement('video');
+
   @ViewChild('opencam', {static: true})
   canvas;
   ctx: CanvasRenderingContext2D;
@@ -200,7 +203,9 @@ export class OpencamComponent implements OnInit, OnDestroy {
 
   frames: string[];
 
-  constructor() {}
+  constructor() {
+    this.video.muted = true;
+  }
 
   ngOnInit() {
     this.ctx = this.canvas.nativeElement.getContext('2d');
@@ -302,6 +307,7 @@ export class OpencamComponent implements OnInit, OnDestroy {
             this.video.addEventListener('loadedmetadata', () => {
               this.canvas.clientWidth = this.video.videoWidth;
               this.canvas.clientHeight = this.video.videoHeight;
+              this.lodadedMetadata.emit(true);
             });
             this.video.addEventListener('play', () => this.drawToCanvas());
             this.stream = stream;
